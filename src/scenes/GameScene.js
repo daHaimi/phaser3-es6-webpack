@@ -337,7 +337,7 @@ class GameScene extends Phaser.Scene {
         }
 
 
-        if (this.messsages.length > this.nextMsg && this.mario.x > this.messsages[this.nextMsg].x) {
+        if (this.finishLine.active && this.messsages.length > this.nextMsg && this.mario.x > this.messsages[this.nextMsg].x) {
             this.displayTextBox(this.messsages[this.nextMsg++].message);
         }
 
@@ -851,6 +851,7 @@ class GameScene extends Phaser.Scene {
     resume() {
         this.physics.world.resume();
     }
+
 }
 
 export default GameScene;

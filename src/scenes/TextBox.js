@@ -17,7 +17,7 @@ class TextBox extends Phaser.Scene {
 
     create(data) {
         this.gameScene = this.scene.get('GameScene');
-        this.text = data.text.replace('\n', '\n\n').toUpperCase();
+        this.text = data.text.replace('\n', '\n \n').toUpperCase();
 
         const graphics = this.add.graphics();
 
@@ -39,6 +39,8 @@ class TextBox extends Phaser.Scene {
         }, this);
 
         this.textObject = this.add.bitmapText(...this.getTextStart(size), 'font', this.text, 9);
+
+        this.add.bitmapText(100, 180, 'font', '- SELECT TO CONTINUE -', 9);
     }
 
     update(time, delta) {

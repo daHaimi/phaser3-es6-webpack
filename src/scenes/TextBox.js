@@ -11,8 +11,9 @@ class TextBox extends Phaser.Scene {
 
     getTextStart(size) {
         const divisor = window.screen.availHeight / this.game.config.height;
-        const margin = 16;
-        return [divisor * size[0] / this.partial + margin, divisor * size[1] / this.partial + margin];
+        const marginTop = 24;
+        const marginLeft = 32
+        return [divisor * size[0] / this.partial + marginLeft, divisor * size[1] / this.partial + marginTop];
     }
 
     create(data) {
@@ -25,7 +26,7 @@ class TextBox extends Phaser.Scene {
         const sw = this.game.config.width;
 
         const size = [sw / this.partial, sh / this.partial, sw / this.boxPart, sh / this.boxPart];
-
+        console.log(size);
         graphics.fillStyle('0x000000', 1);
         graphics.fillRect(...size);
         graphics.lineStyle(4, 0x003366, 1);

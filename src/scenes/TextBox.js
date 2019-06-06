@@ -26,7 +26,6 @@ class TextBox extends Phaser.Scene {
         const sw = this.game.config.width;
 
         const size = [sw / this.partial, sh / this.partial, sw / this.boxPart, sh / this.boxPart];
-        console.log(size);
         graphics.fillStyle('0x000000', 1);
         graphics.fillRect(...size);
         graphics.lineStyle(4, 0x003366, 1);

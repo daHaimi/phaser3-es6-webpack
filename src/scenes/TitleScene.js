@@ -5,15 +5,22 @@ class TitleScene extends Phaser.Scene {
         });
     }
     preload() {
+
+        // Logo
+        this.load.spritesheet('logo', 'assets/images/mario-logo.png', {
+            frameWidth: 400,
+            frameHeight: 128
+        });
+
         this.load.atlas('mario-sprites', 'assets/mario-sprites.png', 'assets/mario-sprites.json');
     }
     create() {
         let config = {
             key: 'title',
-            frames: [{
-                frame: 'title',
-                key: 'mario-sprites'
-            }]
+            frames: this.anims.generateFrameNumbers('logo'),
+            frameRate: 2,
+            yoyo: false,
+            repeat: -1
         };
         this.anims.create(config);
 
@@ -44,7 +51,7 @@ class TitleScene extends Phaser.Scene {
         el.style.width = 400 * multiplier + 'px';
         el.style.height = 240 * multiplier + 'px';
 
-        this.pressX = this.add.bitmapText(16 * 8 + 4, 8 * 16, 'font', 'PRESS X TO START', 8);
+        this.pressX = this.add.bitmapText(16 * 8 + 4, 8 * 16, 'font', 'PRESS A TO START', 8);
         this.blink = 1000;
 
         this.startKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
@@ -81,9 +88,8 @@ class TitleScene extends Phaser.Scene {
     }
 
     startGame() {
-        
         this.tileMusic.volume = 0;
-        console.log('Muting titleMusic')
+        console.log('Muting titleMusic');
         //this.music.pause()
         this.scene.stop('GameScene');
         this.registry.set('attractMode', false);
@@ -91,7 +97,6 @@ class TitleScene extends Phaser.Scene {
     }
 
     restartScene() {
-        
         this.tileMusic.volume = 0.2;
         console.log('Unmuting titleMusic')
         //        this.attractMode.stop();

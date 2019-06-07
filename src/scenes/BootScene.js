@@ -50,6 +50,32 @@ class BootScene extends Phaser.Scene {
             frameHeight: 32
         });
 
+        // Spritesheets with fixed sizes. Should be replaced with atlas:
+        this.load.spritesheet('noise', 'assets/images/noise.png', {
+            frameWidth: 400,
+            frameHeight: 240
+        });
+        // Spritesheets with fixed sizes. Should be replaced with atlas:
+        this.load.spritesheet('toad', 'assets/images/toad.png', {
+            frameWidth: 18,
+            frameHeight: 24
+        });
+        // Spritesheets with fixed sizes. Should be replaced with atlas:
+        this.load.spritesheet('gollum', 'assets/images/gollum.png', {
+            frameWidth: 48,
+            frameHeight: 64
+        });
+        // Spritesheets with fixed sizes. Should be replaced with atlas:
+        this.load.spritesheet('peach', 'assets/images/peach.png', {
+            frameWidth: 16,
+            frameHeight: 24
+        });
+        // Spritesheets with fixed sizes. Should be replaced with atlas:
+        this.load.spritesheet('besen', 'assets/images/besen.png', {
+            frameWidth: 400,
+            frameHeight: 165
+        });
+
         // Beginning of an atlas to replace the spritesheets above. Always use spriteatlases. I use TexturePacker to prepare them.
         // Check rawAssets folder for the TexturePacker project I use to prepare these files.
         this.load.atlas('mario-sprites', 'assets/mario-sprites.png', 'assets/mario-sprites.json');

@@ -80,7 +80,7 @@ class YourPrincessScene extends Phaser.Scene {
             this.toad.play('toad');
         });
         this.stateDef(1, 1000, () => this.displayTextBox('Sorry,\nbut your princess\nis in another castle!'));
-        this.stateDef(2, 100, () => {
+        this.stateDef(2, 1000, () => {
             this.toad.setVisible(false);
             this.noise.setVisible(true);
         });

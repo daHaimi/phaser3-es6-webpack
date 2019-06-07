@@ -337,7 +337,7 @@ class GameScene extends Phaser.Scene {
         }
 
 
-        if (this.finishLine.active && this.messsages.length > this.nextMsg && this.mario.x > this.messsages[this.nextMsg].x) {
+        if (! this.attractMode && this.finishLine.active && this.messsages.length > this.nextMsg && this.mario.x > this.messsages[this.nextMsg].x) {
             this.displayTextBox(this.messsages[this.nextMsg++].message);
         }
 
@@ -566,6 +566,7 @@ class GameScene extends Phaser.Scene {
     removeFlag(step = 0) {
         switch (step) {
             case 0:
+                console.log(window.recording);
                 this.music.pause();
                 this.sound.playAudioSprite('sfx', 'smb_flagpole');
                 this.mario.play('mario/climb' + this.mario.animSuffix);
@@ -654,9 +655,9 @@ class GameScene extends Phaser.Scene {
             this.recordedKeys = {};
             update = true;
         } else {
-            update = (time - recording[recording.length - 1].time) > 200; // update at least 5 times per second
+            update = (window.time - recording[recording.length - 1].time) > 200; // update at least 5 times per second
         }
-        time += delta;
+        window.time += delta;
         if (!update) {
             // update if keys changed
             ['jump', 'left', 'right', 'down', 'fire', 'safe', 'married' ].forEach((dir) => {
@@ -666,8 +667,8 @@ class GameScene extends Phaser.Scene {
             });
         }
         if (update) {
-            recording.push({
-                time,
+            window.recording.push({
+                time: window.time,
                 keys,
                 x: this.mario.x,
                 y: this.mario.y,
@@ -830,7 +831,7 @@ class GameScene extends Phaser.Scene {
 
     playMarriedWithChildrenVideo() {
         this.physics.world.pause();
-        
+
         this.scene.launch('MarriedWithChildren');
         var youAreSafeScene = this.scene.get('MarriedWithChildren');
 

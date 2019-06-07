@@ -88,9 +88,8 @@ class TitleScene extends Phaser.Scene {
     }
 
     startGame() {
-
         this.tileMusic.volume = 0;
-        console.log('Muting titleMusic')
+        console.log('Muting titleMusic');
         //this.music.pause()
         this.scene.stop('GameScene');
         this.registry.set('attractMode', false);
@@ -98,7 +97,6 @@ class TitleScene extends Phaser.Scene {
     }
 
     restartScene() {
-
         this.tileMusic.volume = 0.2;
         console.log('Unmuting titleMusic')
         //        this.attractMode.stop();

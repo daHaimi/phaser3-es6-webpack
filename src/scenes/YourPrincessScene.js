@@ -80,7 +80,7 @@ class YourPrincessScene extends Phaser.Scene {
             this.toad.play('toad');
         });
         this.stateDef(1, 1000, () => this.displayTextBox('Sorry,\nbut your princess\nis in another castle!'));
-        this.stateDef(2, 1500, () => {
+        this.stateDef(2, 100, () => {
             this.toad.setVisible(false);
             this.noise.setVisible(true);
         });
@@ -92,7 +92,7 @@ class YourPrincessScene extends Phaser.Scene {
         });
         this.stateDef(4, 500, () => this.displayTextBox('Ein Ring sie zu knechten\n...'));
         this.stateDef(5, 500, () => this.displayTextBox('Mein Schatz!\n...'));
-        this.stateDef(6, 1500, () => {
+        this.stateDef(6, 1000, () => {
             this.gollum.setVisible(false);
             this.noise.setVisible(true);
         });
@@ -110,13 +110,13 @@ class YourPrincessScene extends Phaser.Scene {
             this.scale = 0.01;
             this.besenOn = true;
         });
-        this.stateDef(11, 1500, () => {
+        this.stateDef(11, 1000, () => {
             this.besenOn = false;
             this.peach.setVisible(false);
             this.besen.setVisible(false);
             this.noise.setVisible(true);
         });
-        this.stateDef(12, 2000, () => {
+        this.stateDef(12, 500, () => {
             this.noise.setVisible(false);
             this.peach.setVisible(true);
             this.peach.x += 50;

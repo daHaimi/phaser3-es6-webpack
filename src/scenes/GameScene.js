@@ -442,6 +442,7 @@ class GameScene extends Phaser.Scene {
             // Mario is bending on a pipe that leads somewhere:
             console.log(sprite.bending, tile.properties.pipe, tile.properties.dest);
             if (sprite.bending && tile.properties.pipe && tile.properties.dest) {
+                sprite.scene.nextMsg = 3;
                 sprite.enterPipe(parseInt(tile.properties.dest), tile.rotation);
             }
         }
@@ -627,7 +628,16 @@ class GameScene extends Phaser.Scene {
                 this.tweens.add({
                     targets: this.mario,
                     alpha: 0,
-                    duration: 500
+                    duration: 500,
+                    onComplete: () => this.removeFlag(3)
+                });
+                break;
+            case 3:
+                this.tweens.add({
+                    targets: this.mario,
+                    alpha: 1,
+                    duration: 1,
+                    onComplete: () => this.endGame()
                 });
                 break;
         }
@@ -852,7 +862,7 @@ class GameScene extends Phaser.Scene {
     }
 
     endGame() {
-        this.mario.enterPipe(3, 0, false);
+        this.mario.enterPipe(4, 0, false);
         this.physics.world.pause();
         this.scene.launch('YourPrincessScene');
     }

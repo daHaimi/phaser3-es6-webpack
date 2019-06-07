@@ -46,6 +46,10 @@ class GameScene extends Phaser.Scene {
             {
                 x: 1100,
                 message: 'Schlechtester Zeitpunkt\nfuer eine Unterbrechung?\n\n- Mitten ueberm Loch!'
+            },
+            {
+                x: 2216,
+                message: 'Du bist safe!\nOder bist du safe?'
             }
         ];
         this.nextMsg = 0;
@@ -118,7 +122,8 @@ class GameScene extends Phaser.Scene {
             text: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.T),
             lower: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.L),
             grow: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.G),
-            end: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E)
+            end: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E),
+            query: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q)
         };
 
         // An emitter for bricks when blocks are destroyed.
@@ -322,6 +327,9 @@ class GameScene extends Phaser.Scene {
                 },
                 end: {
                     isDown: this.attractMode.recording[this.attractMode.current].keys.end
+                },
+                query: {
+                    isDown: this.attractMode.recording[this.attractMode.current].keys.query
                 }
             };
         }
@@ -389,12 +397,11 @@ class GameScene extends Phaser.Scene {
             }
         );
 
-        if (this.keys.safe.isDown) {
-            //this.playSafeVideo();
+        if (this.keys.query.isDown) {
+            console.log(this.mario);
         }
 
-        if(this.keys.married.isDown)
-        {
+        if (this.keys.married.isDown) {
             this.playMarriedWithChildrenVideo();
 		}
         if (this.keys.text.isDown) {
@@ -845,6 +852,7 @@ class GameScene extends Phaser.Scene {
     }
 
     endGame() {
+        this.mario.enterPipe(3, 0, false);
         this.physics.world.pause();
         this.scene.launch('YourPrincessScene');
     }

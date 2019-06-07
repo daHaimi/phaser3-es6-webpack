@@ -11,8 +11,8 @@ class TextBox extends Phaser.Scene {
 
     getTextStart(size) {
         const divisor = window.screen.availHeight / this.game.config.height;
-        const marginTop = 24;
-        const marginLeft = 32
+        const marginTop = 16;
+        const marginLeft = 24;
         return [divisor * size[0] / this.partial + marginLeft, divisor * size[1] / this.partial + marginTop];
     }
 
